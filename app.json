@@ -1,13 +1,13 @@
 {
-  "id": "no-interactive-conda-example",
-  "version": "0.0.3",
+  "id": "labelme",
+  "version": "0.0.4:sha-376ae14",
   "description": "Run an non-interactive script on TACC using docker.",
   "owner": "${apiUserId}",
   "enabled": true,
   "runtime": "SINGULARITY",
   "runtimeVersion": null,
   "runtimeOptions": ["SINGULARITY_RUN"],
-  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/cookbook-conda-template:0.0.1",
+  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/labelme:sha-376ae14",
   "jobType": "BATCH",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
@@ -20,7 +20,7 @@
     "execSystemExecDir": "${JobWorkingDir}",
     "execSystemInputDir": "${JobWorkingDir}",
     "execSystemOutputDir": "${JobWorkingDir}/output",
-    "execSystemLogicalQueue": "development",
+    "execSystemLogicalQueue": "vm-small",
     "archiveSystemId": "cloud.data",
     "archiveSystemDir": "HOST_EVAL($HOME)/tapis-jobs-archive/${JobCreateDate}/${JobName}-${JobUUID}",
     "archiveOnAppError": true,
@@ -63,7 +63,7 @@
         "inputMode": "REQUIRED",
         "autoMountLocal": true,
         "sourceUrl": null,
-        "targetPath": "billing.csv"
+        "targetPath": "$WORK"
       }
     ],
     "fileInputArrays": [],
@@ -83,6 +83,6 @@
     "isInteractive": false,
     "icon": "jupyter",
     "category": "Data Processing",
-    "queueFilter": ["development", "normal"]
+    "queueFilter": ["development", "normal", "vm-small"]
   }
 }
