@@ -177,17 +177,13 @@ function port_forwarding(){
     INTERACTIVE_SESSION_ADDRESS="https://${HPC_HOST}:${LOGIN_PORT}"
     elif [ "x${SERVER_TYPE}" == "xVNC" ]; then
 
-    TAP_CERTFILE=${HOME}/.tap/.${SLURM_JOB_ID}
+        TAP_CERTFILE=${HOME}/.tap/.${SLURM_JOB_ID}
     # bail if we cannot create a secure session
     if [ ! -f ${TAP_CERTFILE} ]; then
         echo "TACC: ERROR - could not find TLS cert for secure session"
         echo "TACC: job ${SLURM_JOB_ID} execution finished at: $(date)"
         exit 1
     fi
-}
-
-function run_websockets(){
-
     # fire up websockify to turn the vnc session connection into a websocket connection
     WEBSOCKIFY_CMD="/home1/00832/envision/websockify/run"
     WEBSOCKIFY_PORT=5902
@@ -206,6 +202,8 @@ function run_websockets(){
     exit 1
     fi
 }
+
+
 function get_label_me(){
     # python3
     conda create --name=labelme python=3
@@ -267,7 +265,6 @@ load_DCV_server
 check_X0_Socket
 create_dcv_server
 port_forwarding
-run_websockets
 get_label_me
 send_url_to_webhook
 run_label_me
