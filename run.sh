@@ -11,7 +11,7 @@ function export_repo_variables() {
 	NODE_HOSTNAME_PREFIX=$(hostname -s) # Short Host Name  -->  name of compute node: c###-###
 	NODE_HOSTNAME_DOMAIN=$(hostname -d) # DNS Name  -->  stampede2.tacc.utexas.edu
 	NODE_HOSTNAME_LONG=$(hostname -f)   # Fully Qualified Domain Name  -->  c###-###.stampede2.tacc.utexas.edu
-    HPC_HOST=$(`hostname -d`)
+    HPC_HOST=`hostname -d`
     DCV_SERVER_UP=$(`systemctl is-active dcvserver`)
     XSTARTUP=$("/tmp/dcv-startup-$USER")
 	export HPC_HOST
