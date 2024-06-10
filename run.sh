@@ -78,7 +78,7 @@ function check_X0_Socket(){
 # create an X startup file in /tmp
 # source xinitrc-common to ensure xterms can be made
 # then source the user's xstartup if it exists
-function create_xstartup {
+function create_xstartup() {
     cat <<-EOF >${XSTARTUP}
         #!/bin/sh
 
@@ -86,7 +86,7 @@ function create_xstartup {
         unset DBUS_SESSION_BUS_ADDRESS
         . /etc/X11/xinit/xinitrc-common
         exec startxfce4
-    EOF
+EOF
 ### NOTE: an ampersand after "exec startxfce4" can break DCV.
 ### This ampersand was found in sal's $HOME/.vnc/xstartup for some reason, so disable for all just in case
 # if [ -x $HOME/.vnc/xstartup ]; then
