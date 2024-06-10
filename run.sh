@@ -80,13 +80,13 @@ function check_X0_Socket(){
 # then source the user's xstartup if it exists
 function create_xstartup {
     cat <<-EOF >${XSTARTUP}
-#!/bin/sh
+        #!/bin/sh
 
-unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADDRESS
-. /etc/X11/xinit/xinitrc-common
-exec startxfce4
-EOF
+        unset SESSION_MANAGER
+        unset DBUS_SESSION_BUS_ADDRESS
+        . /etc/X11/xinit/xinitrc-common
+        exec startxfce4
+    EOF
 ### NOTE: an ampersand after "exec startxfce4" can break DCV.
 ### This ampersand was found in sal's $HOME/.vnc/xstartup for some reason, so disable for all just in case
 # if [ -x $HOME/.vnc/xstartup ]; then
@@ -221,17 +221,18 @@ function get_label_me(){
 
 function send_url_to_webhook() {
 
-echo "INTERACTIVE_SESSION_ADDRESS is $INTERACTIVE_SESSION_ADDRESS"
+    echo "INTERACTIVE_SESSION_ADDRESS is $INTERACTIVE_SESSION_ADDRESS"
 
-# Webhook callback url for job ready notification.
-# Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
-curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
+    # Webhook callback url for job ready notification.
+    # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
+    curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 }
 
 function run_label_me(){
     xterm $(    conda activate labelme & labelme)
 }
 # Job is done!
+
 function session_cleanup(){
     echo "TACC: closing ${SERVER_TYPE} session"
     if [ "x${SERVER_TYPE}" == "xDCV" ]; then
