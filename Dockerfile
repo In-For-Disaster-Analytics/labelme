@@ -75,8 +75,8 @@ RUN gpg --import NICE-GPG-KEY \
     && tar -xvzf nice-dcv-ubuntu2204-x86_64.tgz && cd nice-dcv-2023.1-16388-ubuntu2204-x86_64 
 RUN apt-get update && apt-get install -y \
     ./nice-dcv-server_2023.0.16388-1_amd64.ubuntu2204.deb \
-    ./nice-dcv-web-viewer_2023.0.16388-1_amd64.ubuntu2204.deb \
-    ./nice-xdcv_2023.0.551-1_amd64.ubuntu2204.deb 
+    ./nice-dcv-web-viewer_2023.1.16388-1_amd64.ubuntu2204.deb    \
+    ./nice-xdcv_2023.1.565-1_amd64.ubuntu2204.deb 
     # ./nice-dcv-gl_2023.0.1039-1_amd64.ubuntu2204.deb \
 RUN usermod -aG video dcv \
     && rm -rf /tmp/dcv-inst
