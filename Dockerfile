@@ -69,16 +69,16 @@ RUN apt-get update && apt-get install -y \
 # Install NICE DCV
 RUN mkdir -p /tmp/dcv-inst \
     && cd /tmp/dcv-inst \
-    && wget https://d1uj6qtbmh3dt5.cloudfront.net/NICE-GPG-KEY \
-    && gpg --import NICE-GPG-KEY \
+    && wget https://d1uj6qtbmh3dt5.cloudfront.net/NICE-GPG-KEY 
+RUN gpg --import NICE-GPG-KEY \
     && wget https://d1uj6qtbmh3dt5.cloudfront.net/nice-dcv-ubuntu2204-x86_64.tgz \
-    && tar -xvzf nice-dcv-ubuntu2204-x86_64.tgz && cd nice-dcv-2023.1-16388-ubuntu2204-x86_64 \
-    && apt-get update && apt-get install -y \
-    ./nice-dcv-server_2023.0.15487-1_amd64.ubuntu2204.deb \
-    ./nice-dcv-web-viewer_2023.0.15487-1_amd64.ubuntu2204.deb \
-    ./nice-xdcv_2023.0.551-1_amd64.ubuntu2204.deb \
+    && tar -xvzf nice-dcv-ubuntu2204-x86_64.tgz && cd nice-dcv-2023.1-16388-ubuntu2204-x86_64 
+RUN apt-get update && apt-get install -y \
+    ./nice-dcv-server_2023.0.16388-1_amd64.ubuntu2204.deb \
+    ./nice-dcv-web-viewer_2023.0.16388-1_amd64.ubuntu2204.deb \
+    ./nice-xdcv_2023.0.551-1_amd64.ubuntu2204.deb 
     # ./nice-dcv-gl_2023.0.1039-1_amd64.ubuntu2204.deb \
-    && usermod -aG video dcv \
+RUN usermod -aG video dcv \
     && rm -rf /tmp/dcv-inst
 
 # Define the dcvserver.service
