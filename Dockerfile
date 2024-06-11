@@ -85,7 +85,7 @@ RUN mkdir -p /tmp/dcv-inst \
 COPY dcvserver.service /usr/lib/systemd/system/dcvserver.service
 
 # Copy the NICE DCV license file
-COPY license.lic /etc/dcv/license.lic
+# COPY license.lic /etc/dcv/license.lic
 
 # Send Notification message DCV session ready
 # COPY send_dcvsessionready_notification.sh /usr/local/bin/

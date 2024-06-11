@@ -29,6 +29,17 @@
     "cmdPrefix": "mkdir $PWD/work $PWD/home $PWD/scratch;",
     "parameterSet": {
       "appArgs": [],
+      "containerArgs": [
+        {
+            "name": "Interactive Session and TACC Module Mounts",
+            "description": "Mount the required folders in order for TAP, DCV, VNC, and TACC modules to function.",
+            "inputMode": "FIXED",
+            "arg": "--bind /bin,/etc,/home1/apps,/lib,/lib64,/opt,/run,/share,/usr,/var",
+            "notes": {
+                "isHidden": true
+            }
+        }
+    ],
       "schedulerOptions": [
         {
           "name": "TACC Scheduler Profile",
