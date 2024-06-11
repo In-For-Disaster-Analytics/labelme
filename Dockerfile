@@ -72,7 +72,7 @@ RUN mkdir -p /tmp/dcv-inst \
     && wget https://d1uj6qtbmh3dt5.cloudfront.net/NICE-GPG-KEY \
     && gpg --import NICE-GPG-KEY \
     && wget https://d1uj6qtbmh3dt5.cloudfront.net/nice-dcv-ubuntu2204-x86_64.tgz \
-    && tar -xvzf nice-dcv-ubuntu2204-x86_64.tgz && cd nice-dcv-2023.0-15487-ubuntu2204-x86_64 \
+    && tar -xvzf nice-dcv-ubuntu2204-x86_64.tgz && cd nice-dcv-2023.1-16388-ubuntu2204-x86_64 \
     && apt-get update && apt-get install -y \
     ./nice-dcv-server_2023.0.15487-1_amd64.ubuntu2204.deb \
     ./nice-dcv-web-viewer_2023.0.15487-1_amd64.ubuntu2204.deb \
