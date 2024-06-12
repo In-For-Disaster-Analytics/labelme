@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 echo "TACC: job $SLURM_JOB_ID execution at: `date`"
 
