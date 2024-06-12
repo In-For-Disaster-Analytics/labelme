@@ -127,8 +127,8 @@ echo "TACC: local (compute node) ${SERVER_TYPE} port is $LOCAL_PORT"
 function get_label_me(){
     # python3
     wget https://github.com/labelmeai/labelme/releases/download/v5.4.1/labelme-Linux
-    mvdir labelme-Linux $SCRATCH
-    chmod +x $SCRATCH/labelme-Linux/labelme
+    mv labelme-Linux $SCRATCH/
+    chmod +x $SCRATCH/labelme-Linux
     # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
     export DISPLAY
 }
@@ -187,7 +187,7 @@ curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSI
 
 
 function run_label_me(){
-    xterm $(    ./$SCRATCH/labelme-Linux/labelme)
+    xterm $(  $SCRATCH/labelme)
 }
 
 # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
