@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "TACC: job $SLURM_JOB_ID execution at: `date`"
-
+echo "Your command line args (appArgs) are: $@"
 # our node name
 NODE_HOSTNAME=`hostname -s`
 
@@ -122,6 +122,21 @@ fi
 
 echo "TACC: local (compute node) ${SERVER_TYPE} port is $LOCAL_PORT"
 
+function get_label_me(){
+    # python3
+    conda create --name=labelme python=3.11
+    conda activate labelme
+    conda install -c conda-forge pyside2
+    conda install pyqt
+    pip install pyqt5  # pyqt5 can be installed via pip on python3
+    pip install labelme
+
+    # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
+    export DISPLAY
+}
+get_label_me
+
+
 LOGIN_PORT=$(tap_get_port)
 echo "TACC: got login node ${SERVER_TYPE} port $LOGIN_PORT"
 
@@ -172,23 +187,11 @@ echo "INTERACTIVE_SESSION_ADDRESS is $INTERACTIVE_SESSION_ADDRESS"
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
 curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 
-function get_label_me(){
-    # python3
-    conda create --name=labelme python=3
-    source activate labelme
-    # conda install -c conda-forge pyside2
-    # conda install pyqt
-    # pip install pyqt5  # pyqt5 can be installed via pip on python3
-    pip install labelme
 
-    # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
-    export DISPLAY
-}
 function run_label_me(){
     xterm $(    conda activate labelme & labelme)
 }
 
-get_label_me
 # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
 run_label_me
