@@ -172,9 +172,27 @@ echo "INTERACTIVE_SESSION_ADDRESS is $INTERACTIVE_SESSION_ADDRESS"
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
 curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 
+function get_label_me(){
+    # python3
+    conda create --name=labelme python=3
+    source activate labelme
+    # conda install -c conda-forge pyside2
+    # conda install pyqt
+    # pip install pyqt5  # pyqt5 can be installed via pip on python3
+    pip install labelme
+
+    # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
+    export DISPLAY
+}
+function run_label_me(){
+    xterm $(    conda activate labelme & labelme)
+}
+
+get_label_me
 # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
-xterm -r -ls -geometry 80x24+10+10 -title '*** Exit this window to kill your interactive session ***' -e "${_XTERM_CMD}"
+run_label_me
+# xterm -r -ls -geometry 80x24+10+10 -title '*** Exit this window to kill your interactive session ***' -e "${_XTERM_CMD}"
 
 # Job is done!
 
