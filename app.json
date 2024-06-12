@@ -1,6 +1,6 @@
 {
   "id": "LabelMe-ls6",
-  "version": "0.0.1:sha-8b7cb79",
+  "version": "0.0.1:sha-a4389d2",
   "description": "Run an interactive Labelme session on Lonestar 6.",
   "owner": "${apiUserId}",
   "enabled": true,
@@ -9,7 +9,7 @@
   "runtimeOptions": [
       "SINGULARITY_RUN"
   ],
-  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/labelme:sha-8b7cb79",
+  "containerImage": "docker://ghcr.io/in-for-disaster-analytics/labelme:sha-a4389d2",
   "jobType": "BATCH",
   "maxJobs": -1,
   "maxJobsPerUser": -1,
